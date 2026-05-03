@@ -23,7 +23,24 @@ Main libraries and their role in this project:
 
 ## Active Entry Point
 
-Run the advanced RAG application with:
+Run the main executable dispatcher with:
+
+```bash
+python main.py
+```
+
+You can also run a specific workflow directly:
+
+```bash
+python main.py interactive
+python main.py index
+python main.py route "file:attention explain multi-head attention"
+python main.py preview "summarize diffusion models" --prompt bullet
+python main.py process-query "  compare rag and llm??  "
+python main.py legacy-index
+```
+
+The older direct advanced RAG application entry point still works:
 
 ```bash
 python advanced_generation_rag.py
@@ -55,6 +72,7 @@ To add more knowledge to the RAG system, place another PDF in `rag_docs/` and re
 
 ```text
 .
+|-- main.py                           # Executable dispatcher for running workflows by requirement
 |-- advanced_generation_rag.py        # Main interactive advanced RAG pipeline
 |-- advanced_rag_indexing_2.py        # Active source-aware PDF indexing module
 |-- advanced_rag_router.py            # Routes queries to source-specific or global retrievers
