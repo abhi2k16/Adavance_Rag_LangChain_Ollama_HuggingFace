@@ -1,4 +1,9 @@
 # Advanced RAG Pipeline
+![Project Status](https://img.shields.io/badge/status-active-brightgreen)
+![Python](https://img.shields.io/badge/python-3.10%2B-blue)
+![Framework](https://img.shields.io/badge/framework-LangChain-orange)
+![LLM](https://img.shields.io/badge/llm-Ollama-yellow)
+![Embedding](https://img.shields.io/badge/Embedding-HuggingFace-red)
 
 This project is a local Retrieval-Augmented Generation (RAG) pipeline built with LangChain, HuggingFace embeddings, an in-memory vector store, source-aware routing, and Ollama for answer generation.
 
