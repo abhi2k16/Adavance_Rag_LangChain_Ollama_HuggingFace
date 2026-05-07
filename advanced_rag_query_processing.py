@@ -8,14 +8,14 @@ Responsibilities:
   - classify the query into a coarse search mode
 """
 
-from __future__ import annotations
+from __future__ import annotations 
 
 import re
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field #
 
 
 ABBREVIATION_MAP = {
-    "rag": "retrieval augmented generation",
+    "rag": "retrieval augmented generation", 
     "llm": "large language model",
     "nlp": "natural language processing",
     "ml": "machine learning",
@@ -25,8 +25,11 @@ ABBREVIATION_MAP = {
 }
 
 
-@dataclass
+@dataclass 
 class ProcessedQuery:
+    """
+    Represents a processed user query with various transformations and metadata. 
+    """
     raw_query: str
     normalized_query: str
     retrieval_query: str
@@ -102,7 +105,7 @@ def build_query_variants(normalized_query: str) -> list[str]:
     if lowered not in variants:
         variants.append(lowered)
 
-    compact = re.sub(r"[^a-zA-Z0-9\s]", " ", normalized_query)
+    compact = re.sub(r"[^a-zA-Z0-9\s]", " ", normalized_query) # Remove punctuation for a compact variant
     compact = normalize_text(compact)
     if compact and compact not in variants:
         variants.append(compact)
@@ -113,11 +116,11 @@ def build_query_variants(normalized_query: str) -> list[str]:
 def detect_query_issues(raw_query: str, normalized_query: str) -> list[str]:
     """Flag lightweight quality issues so the app can surface them if needed."""
     issues: list[str] = []
-    if len(normalized_query) < 8:
+    if len(normalized_query) < 8: # Arbitrary threshold for "too short" queries that are unlikely to retrieve well
         issues.append("query_too_short")
     if raw_query != raw_query.strip():
         issues.append("extra_whitespace")
-    if re.search(r"(.)\1{4,}", raw_query):
+    if re.search(r"(.)\1{4,}", raw_query): # Flag sequences of 5 or more repeated characters as a potential issue
         issues.append("repeated_characters")
     return issues
 
